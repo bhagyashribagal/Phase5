@@ -1,0 +1,140 @@
+
+package com.Bhagyashri.Phase5lesson2;
+
+/**
+ * Hello world!
+ *
+ */
+publicclass App 
+{
+publicstaticvoid main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+    }
+}
+/////////////////////////////////////////////////////////////////
+package com.Bhagyashri.Phase5lesson2;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class BeofreMethodAnnotation {
+	
+	public WebDriver driver;
+	
+	@BeforeMethod
+	public void startbrowser()
+	{
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();	
+	}
+	
+	@Test(priority='1')
+	public void TestWikiHomepage() throws InterruptedException
+	{
+		driver.get("https://www.wikipedia.org/");
+		driver.manage().timeouts().pageLoadTimeout(3, TimeUnit.SECONDS);
+		driver.findElement(By.id("searchInput")).sendKeys("Automation testing");
+        Thread.sleep(5000);
+		driver.findElement(By.xpath("//button[@type='submit']")).click();
+		Thread.sleep(5000);
+	}
+	@Test(priority='2')
+
+	public void TestWikiLoginPage() throws InterruptedException
+	{
+		driver.get("https://en.wikipedia.org/w/index.php?title=Special:UserLogin&returnto=Special%3ASearch&returntoquery=search%3D%26go%3DGo");
+		driver.findElement(By.id("wpName1")).sendKeys("Bhagyashri");
+		driver.findElement(By.id("wpPassword1")).sendKeys("Bhagyashri@gmail.com");
+		Thread.sleep(5000);
+	}
+
+	@AfterMethod
+	public void closeBrowser()
+	{
+		driver.close();
+	}
+}
+
+//Pom//
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+
+<groupId>com.ankit</groupId>
+<artifactId>Automate-the-Web-Application_PracticeProject-2</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+<packaging>jar</packaging>
+
+<name>Automate-the-Web-Application_PracticeProject-2</name>
+<url>http://maven.apache.org</url>
+
+<properties>
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+
+<dependencies>
+<dependency>
+<groupId>org.seleniumhq.selenium</groupId>
+<artifactId>selenium-java</artifactId>
+<version>3.141.59</version>
+</dependency>
+<dependency>
+<groupId>org.testng</groupId>
+<artifactId>testng</artifactId>
+<version>6.14.3</version>
+<scope>test</scope>
+</dependency>
+<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>4.1.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>4.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+	<dependency>
+			<groupId>org.apache.directory.studio</groupId>
+			<artifactId>org.apache.commons.io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>4.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+			<version>4.1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>openxml4j</artifactId>
+			<version>1.0-beta</version>
+		</dependency>
+
+
+
+
+</dependencies>
+
+</project>
+
+
